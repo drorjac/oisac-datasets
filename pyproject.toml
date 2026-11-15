@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oisac-datasets"
+version = "0.1.0"
+description = "Catalogue, download and description of the open opportunistic-sensing datasets (CML, SML, PWS) of the OISAC lecture"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = ["requests", "pyyaml", "xarray", "netCDF4", "pandas"]
+
+[tool.setuptools]
+packages = ["oisac_datasets"]

@@ -1,0 +1,321 @@
+# Every dataset in the OISAC lecture "Open datasets for opportunistic sensing".
+# One entry per dataset. `source` says where the files live (zenodo record, 4TU article,
+# GitHub folder, or a page that needs a manual download); `sample` says what
+# `python -m oisac_datasets fetch <id>` downloads by default (a small split, never the
+# whole archive unless it is small).
+#
+# group: main      the six networks the lecture works with
+#        more      other open link datasets (field campaigns, single links, archives)
+#        active    links built for the experiment (testbeds)
+#        upcoming  lab data that is not open yet
+
+datasets:
+
+  - id: openmrg
+    name: OpenMRG
+    group: main
+    sensor: CML
+    region: Gothenburg, Sweden
+    period: Jun-Aug 2015
+    resolution: 10 s
+    content: 364 CMLs (728 sub-links, 7-38 GHz), TSL and RSL; 11 city gauges, SMHI gauge, SMHI radar
+    licence: CC BY-SA 4.0
+    operator: Ericsson
+    paper: Andersson et al. (2022), ESSD 14, 5411-5426
+    paper_doi: 10.5194/essd-14-5411-2022
+    data_doi: 10.5281/zenodo.7107689
+    source: {type: zenodo, record: "7107689"}
+    sample:
+      - {file: OpenMRG.zip, members: [readme.txt, cml/cml_metadata.csv, gauges/city/CityGauges-metadata.csv, gauges/smhi/GbgA-71420-2015JJA.csv]}
+      - {github: OpenSenseAction/opensense_example_data, path: OpenMRG/openmrg_cml_8d.nc}
+      - {github: OpenSenseAction/opensense_example_data, path: OpenMRG/openmrg_municp_gauge_8d.nc}
+      - {github: OpenSenseAction/opensense_example_data, path: OpenMRG/openmrg_rad_8d.nc}
+    sample_note: readme and metadata from inside the 318 MB zip (read over HTTP; the 4.6 GB cml.nc stays remote), plus the OpenSense 8-day example subset (CML, city gauges, radar)
+
+  - id: openrainer
+    name: OpenRainER
+    group: main
+    sensor: CML
+    region: Emilia-Romagna, Italy
+    period: 2021-2022
+    resolution: 1 min
+    content: 151 CMLs at 24.6/25.6 GHz (TSL and RSL); 319 ARPAE gauges (15 min); 3 radar products
+    licence: CC BY 4.0
+    operator: Lepida
+    paper: Covi et al. (2026), ESSD Discuss.
+    paper_doi: 10.5194/essd-2026-160
+    data_doi: 10.5281/zenodo.10593848
+    source: {type: zenodo, record: "10593848"}
+    sample:
+      - {file: README.txt}
+      - {github: OpenSenseAction/opensense_example_data, path: OpenRainER/openrainer_cml_8d.nc}
+      - {github: OpenSenseAction/opensense_example_data, path: OpenRainER/openrainer_gauges_8d.nc}
+    sample_note: the record README and the OpenSense 8-day example subset (links and gauges; the 16 MB radar subset is left out)
+
+  - id: netherlands
+    name: Netherlands CML (2011-2015)
+    group: main
+    sensor: CML
+    region: the Netherlands
+    period: Jan 2011 - Mar 2015
+    resolution: 15 min (min/max RSL)
+    content: about 1800 paths, 3070 sub-links of one operator; RAINLINK format
+    licence: CC BY 4.0
+    operator: T-Mobile NL
+    paper: Overeem et al. (2024), 4TU.ResearchData
+    paper_doi: 10.4121/be252844-b672-471e-8d69-27269a862ec1.v1
+    data_doi: 10.4121/be252844-b672-471e-8d69-27269a862ec1.v1
+    source: {type: 4tu, article: be252844-b672-471e-8d69-27269a862ec1}
+    sample:
+      - {file: RawCML_to_RAINLINKFormat.R}
+      - {file: README.pdf}
+      - {file: RawCMLdata.zip, members: [RawCMLdata/2014/NOKIA_FH_6-3-2014.csv.gz, RawCMLdata/2015/NOKIA_FH_3-7-2015.csv.gz]}
+    sample_note: README, the conversion script and two daily files from inside the 12.6 GB zip (2902 files; read over HTTP, the zip is not downloaded)
+
+  - id: opensat4weather
+    name: OpenSat4Weather
+    group: main
+    sensor: SML
+    region: southern France
+    period: Aug-Dec 2022
+    resolution: 1 min
+    content: 215 Ku-band TV satellite links (RSL) with the ERA5 0 C height; Meteo-France gauges and radar along each link
+    licence: CC BY 4.0
+    paper: Nebuloni et al. (2026), ESSD 18, 7455-7473
+    paper_doi: 10.5194/essd-18-7455-2026
+    data_doi: 10.5281/zenodo.16530166
+    source: {type: zenodo, record: "16530166"}
+    sample:
+      - {file: OpenSat4Weather_data.zip}
+    sample_note: the whole record (42 MB)
+
+  - id: amsterdam_pws
+    name: Amsterdam PWS
+    group: main
+    sensor: PWS
+    region: Amsterdam, the Netherlands
+    period: May 2016 - May 2018
+    resolution: 5 min
+    content: 134 Netatmo personal weather stations; KNMI gauge-adjusted radar at the station points
+    licence: CC BY 4.0
+    operator: Netatmo (citizens)
+    paper: de Vos et al. (2019), GRL 46, 8820-8829
+    paper_doi: 10.1029/2019GL083731
+    data_doi: 10.4121/uuid:6e6a9788-49fc-4635-a43d-a2fa164d37ec
+    source: {type: 4tu, article: "12703250"}
+    sample:
+      - {github: OpenSenseAction/opensense_example_data, path: AMS_PWS/ams_pws_full_period.nc}
+      - {github: OpenSenseAction/opensense_example_data, path: AMS_PWS/ams_gauges_full_period.nc}
+    sample_note: the full period in the OpenSense format (6 MB)
+
+  - id: openmesh
+    name: OpenMesh v2
+    group: main
+    sensor: CML (community mesh)
+    region: New York City, USA
+    period: Oct 2023 - Nov 2026, yearly updates
+    resolution: 1 min, later 6 min
+    content: 372 links, 758 sub-links of NYC Mesh at 5, 24 and 60 GHz (RSL); ASOS, GHCN, METAR, MRMS radar days
+    licence: CC BY 4.0
+    operator: NYC Mesh (community network)
+    paper: Jacoby et al. (2026), ESSD 18, 5817-5836
+    paper_doi: 10.5194/essd-18-5817-2026
+    data_doi: 10.5281/zenodo.23283445
+    source: {type: zenodo, record: "23283445"}
+    sample:
+      - {file: openmesh-2.0.0.zip, members: ["*/README.md", "*/docs/CHANGELOG.md", "*/data/links/links_metadata.csv", "*/data/weather/asos/asos_stations.csv", "*/data/weather/ghcn/*", "*/data/weather/radar/radar_events.csv", "*/data/weather/radar/openmesh_radar_rain_2023-11-22.nc"]}
+    sample_note: README, link metadata, station lists, GHCN daily, the radar-event table and one radar day from inside the 606 MB release zip (read over HTTP; the 120 MB link file and the 471 MB ASOS file stay remote)
+    links:
+      code: https://github.com/drorjac/OpenMesh
+
+  - id: openmesh_v1
+    name: OpenMesh v1
+    group: main
+    sensor: CML (community mesh)
+    region: New York City, USA
+    period: Oct 2023 - Jun 2024
+    resolution: 1 min
+    content: the first release, 103 links (links only on this record)
+    licence: CC BY 4.0
+    operator: NYC Mesh (community network)
+    paper: Jacoby et al. (2026), ESSD 18, 5817-5836
+    paper_doi: 10.5194/essd-18-5817-2026
+    data_doi: 10.5281/zenodo.15287692
+    source: {type: zenodo, record: "15287692"}
+    sample:
+      - {file: OpenMesh.zip}
+    sample_note: the whole record (14 MB)
+    no_preview: ["*pws*"]   # Weather Underground PWS: listed, never previewed or redistributed
+
+  - id: wageningen
+    name: Wageningen campaign
+    group: more
+    sensor: CML (research links)
+    region: Wageningen, the Netherlands
+    period: Aug 2014 - Jan 2016
+    resolution: 20 Hz
+    content: three co-located 2.2 km rooftop links (38 GHz ex-commercial, 26 and 38 GHz dual-pol. research); 5 disdrometers, gauge, scintillometer, cameras
+    licence: CC0
+    paper: van Leth et al. (2018), AMT 11, 4645-4669
+    paper_doi: 10.5194/amt-11-4645-2018
+    data_doi: 10.4121/uuid:1dd45123-c732-4390-9fe4-6e09b578d4ff
+    source: {type: 4tu, article: "12681971"}
+    sample:
+      - {smallest: 3}
+    sample_note: the three smallest files of the record (README and metadata)
+
+  - id: prague_collocated
+    name: Prague collocated CMLs
+    group: more
+    sensor: CML (processed)
+    region: Prague, Czech Republic
+    period: 2014-2016, non-winter
+    resolution: 1 min
+    content: pairs of links on the same path at 12 sites, 22-38 GHz, 33 rain events; rain-induced attenuation and rain rate
+    licence: CC BY 4.0
+    paper: Spackova et al. (2023)
+    data_doi: 10.5281/zenodo.8009877
+    source: {type: zenodo, record: "8009877"}
+    sample:
+      - {file: dataset.zip}
+    sample_note: the whole record (2 MB)
+
+  - id: prague_eband
+    name: Prague E-band CMLs
+    group: more
+    sensor: CML (E-band)
+    region: Prague, Czech Republic
+    period: one season
+    resolution: 1 and 5 min
+    content: E-band (71-86 GHz) CML losses with rain gauges, temperature and humidity; raw and regular series, R code
+    licence: CC BY 4.0
+    paper: Fencl et al. (2020), AMT 13, 6559-6578
+    paper_doi: 10.5194/amt-13-6559-2020
+    data_doi: 10.5281/zenodo.4090953
+    source: {type: zenodo, record: "4090953"}
+    sample:
+      - {file: dataset.zip, members: ["preprocessed/commercial_microwave_links_total_loss/1a.csv", "preprocessed/commercial_microwave_links_total_loss/metadata*.csv", "preprocessed/meteo_data/metadata*.csv", "preprocessed/meteo_data/site_1_rainfall_intensity.csv"]}
+    sample_note: one preprocessed link, the link and station metadata and one gauge, from inside the 85 MB zip (read over HTTP)
+
+  - id: prague_eband_link
+    name: Prague E-band link (water vapour)
+    group: more
+    sensor: CML (E-band)
+    region: Prague, Czech Republic
+    period: 7 months
+    resolution: 5 min
+    content: one 4.87 km link at 73.5/83.5 GHz with temperature and humidity, for water vapour retrieval
+    licence: CC BY 4.0
+    paper: Fencl et al. (2021)
+    data_doi: 10.5281/zenodo.5013463
+    source: {type: zenodo, record: "5013463"}
+    sample:
+      - {file: Dataset_1.0.0.zip}
+    sample_note: the whole record (6 MB)
+
+  - id: common_dubendorf
+    name: CoMMon (Dubendorf)
+    group: more
+    sensor: CML (dual-pol.)
+    region: Dubendorf, Switzerland
+    period: Mar 2011 - Mar 2012
+    resolution: 4 s
+    content: one 1.85 km dual-polarised 38 GHz link, radomes shielded at times (wet antenna); 5 disdrometers, 3 gauges
+    licence: CC BY 4.0
+    data_doi: 10.5281/zenodo.4923125
+    source: {type: zenodo, record: "4923125"}
+    sample:
+      - {file: Readme.txt}
+      - {file: Sites.kml}
+      - {file: Data_example_of_one_day.zip}
+    sample_note: the readme, the site file and the record's own one-day example
+
+  - id: nl_2011_12
+    name: Netherlands CML (2011-2012)
+    group: more
+    sensor: CML
+    region: the Netherlands
+    period: Jun 2011 - Sep 2012
+    resolution: 15 min (min/max RSL)
+    content: the first RAINLINK release, about 2500 links
+    licence: CC BY 4.0
+    paper: Overeem et al. (2016), AMT 9, 2425-2444
+    paper_doi: 10.5194/amt-9-2425-2016
+    data_doi: 10.4121/7a692e36-c32f-4916-813b-c62d2566e8d8
+    source: {type: 4tu, article: 7a692e36-c32f-4916-813b-c62d2566e8d8}
+    sample:
+      - {file: README.txt}
+      - {file: data.zip, members: [CMLs_20110609_20110911_21days.dat], head_mb: 5}
+    sample_note: the README and the first 5 MB of the 21-day file inside the 590 MB zip (streamed over HTTP and cut at a line end)
+
+  - id: srilanka
+    name: Sri Lanka rainfall maps
+    group: more
+    sensor: CML product (maps only)
+    region: Sri Lanka
+    period: Sep-Dec 2019
+    resolution: 15 min, 0.02 deg grid
+    content: rainfall maps from the links; the link data themselves are not open
+    licence: CC BY 4.0
+    paper: Overeem et al. (2021), ERL 16, 074058
+    paper_doi: 10.1088/1748-9326/ac0fa6
+    data_doi: 10.4121/14166539
+    source: {type: 4tu, article: "14166539"}
+    sample:
+      - {smallest: 3}
+    sample_note: the interpolation grid and the smallest map files
+
+  - id: cosmos
+    name: COSMOS 28 GHz measurements
+    group: active
+    sensor: mmWave channel measurements (testbed)
+    region: West Harlem, New York City, USA
+    period: 2019 (street level), 2022-2024 (outdoor to indoor)
+    resolution: campaign
+    content: more than 1500 street-level links and 2200 outdoor-to-indoor links at 28 GHz; path gain, beamforming gain, SNR
+    licence: see the source
+    paper: Chen et al. (2019), Proc. ACM mmNets; Kohli et al. (2024), IEEE/ACM ToN 32(3)
+    paper_doi: 10.1145/3349624.3356770
+    source: {type: manual, url: "https://wiki.cosmos-lab.org/wiki/Datasets", note: "shared through the NIST 5G mmWave Channel Model Alliance; the COSMOS wiki has no direct download (checked Nov 2026), ask testbed support"}
+
+  - id: arahaul
+    name: AraHaul link and weather
+    group: active
+    sensor: CML (research link) + weather
+    region: Ames, Iowa, USA
+    period: 4-5 Jul 2023 (link runs), 48 h weather
+    resolution: 1 s
+    content: one Aviat link at 11 and 80 GHz; RSL, SNR, modulation, capacity, BER at both ends; iperf/ping; Davis stations, Parsivel2 (raw size-velocity matrix), Lufft WS100
+    licence: CC BY 4.0
+    paper: Zu et al. (2023), IEEE FNWF
+    paper_doi: 10.1109/FNWF58287.2023.10520543
+    data_doi: 10.21227/6ncx-rs20
+    source: {type: manual, url: "https://ieee-dataport.org/documents/arahaul-outdoor-wireless-backhaul-link-performance-weather-measurements", note: "IEEE DataPort needs a (free) IEEE account; download by hand into the data folder"}
+
+  - id: israel_tau
+    name: Israel CML network (TAU CellEnMon)
+    group: upcoming
+    sensor: CML
+    region: Israel
+    period: 2005-
+    resolution: 15 min to 1/day (five protocols)
+    content: about 15000 links (2014 count) from Cellcom, Pelephone and Partner/PHI; 0.1 or 1 dB, instantaneous or min/max
+    licence: not open yet (being prepared for release)
+    operator: Cellcom, Pelephone, Partner/PHI
+    paper: Messer, Zinevich and Alpert (2006), Science 312, 713
+    paper_doi: 10.1126/science.1120034
+    source: {type: upcoming, url: "https://cellenmonlab.tau.ac.il"}
+
+  - id: rehovot_scwn
+    name: Rehovot smart-city E-band network
+    group: upcoming
+    sensor: CML (smart-city x-haul)
+    region: Rehovot, Israel
+    period: 2020
+    resolution: 30 s
+    content: 66 links at 70-80 GHz on street poles, 53 m to 2.42 km, about 10 x 10 km
+    licence: not open yet
+    operator: SMBIT
+    paper: Ostrometzky and Messer (2024), Sensors 24, 7901
+    paper_doi: 10.3390/s24247901
+    source: {type: upcoming, url: "https://cellenmonlab.tau.ac.il"}
