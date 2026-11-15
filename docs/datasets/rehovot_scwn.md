@@ -1,6 +1,6 @@
 # Rehovot smart-city E-band network
 
-*Not open yet* · `rehovot_scwn`
+*Known networks, data not open (yet)* · `rehovot_scwn`
 
 | | |
 |---|---|
@@ -15,4 +15,6 @@
 | Data | [https://cellenmonlab.tau.ac.il](https://cellenmonlab.tau.ac.il) |
 
 **Not open yet.** The data are in the TAU CellEnMon lab database and are being prepared for a public release. This page will get a download once they are out.
+
+More: <https://cellenmonlab.tau.ac.il>
 

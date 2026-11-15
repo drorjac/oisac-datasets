@@ -20,7 +20,7 @@ python -m oisac_datasets fetch wageningen            # the small split below
 python -m oisac_datasets fetch wageningen --all      # the whole record
 ```
 
-Split: the three smallest files of the record (README and metadata).
+Split: the three smallest files of the record (README and site file).
 
 ## Files in the record
 

@@ -1,6 +1,6 @@
 # Israel CML network (TAU CellEnMon)
 
-*Not open yet* · `israel_tau`
+*Known networks, data not open (yet)* · `israel_tau`
 
 | | |
 |---|---|
@@ -15,4 +15,6 @@
 | Data | [https://cellenmonlab.tau.ac.il](https://cellenmonlab.tau.ac.il) |
 
 **Not open yet.** The data are in the TAU CellEnMon lab database and are being prepared for a public release. This page will get a download once they are out.
+
+More: <https://cellenmonlab.tau.ac.il>
 

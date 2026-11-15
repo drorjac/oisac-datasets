@@ -1,6 +1,6 @@
 # Netherlands CML (2011-2015)
 
-*The six networks of the lecture* · `netherlands`
+*The six networks of the OISAC lecture* · `netherlands`
 
 | | |
 |---|---|
@@ -9,10 +9,16 @@
 | Period | Jan 2011 - Mar 2015 |
 | Resolution | 15 min (min/max RSL) |
 | Content | about 1800 paths, 3070 sub-links of one operator; RAINLINK format |
-| Operator / source | T-Mobile NL |
+| Operator / source | T-Mobile NL (now Odido) |
 | Licence | CC BY 4.0 |
 | Paper | Overeem et al. (2024), 4TU.ResearchData, [doi:10.4121/be252844-b672-471e-8d69-27269a862ec1.v1](https://doi.org/10.4121/be252844-b672-471e-8d69-27269a862ec1.v1) |
 | Data | [https://doi.org/10.4121/be252844-b672-471e-8d69-27269a862ec1.v1](https://doi.org/10.4121/be252844-b672-471e-8d69-27269a862ec1.v1) |
+
+**Links:** [code](https://github.com/overeem11/RAINLINK)
+
+![Netherlands CML (2011-2015)](../fig/datasets/netherlands.png)
+
+*Drawn from the downloaded split by `python -m oisac_datasets figures`.*
 
 ## Get it
 

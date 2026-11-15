@@ -1,10 +1,10 @@
-# Sri Lanka rainfall maps
+# Sri Lanka CML rain maps
 
-*More open link datasets* · `srilanka`
+*Rain products from opportunistic sensors* · `srilanka`
 
 | | |
 |---|---|
-| Sensor | CML product (maps only) |
+| Sensor | CML product (maps) |
 | Region | Sri Lanka |
 | Period | Sep-Dec 2019 |
 | Resolution | 15 min, 0.02 deg grid |
@@ -20,7 +20,7 @@ python -m oisac_datasets fetch srilanka            # the small split below
 python -m oisac_datasets fetch srilanka --all      # the whole record
 ```
 
-Split: the interpolation grid and the smallest map files.
+Split: the readme, the interpolation grid and the smallest map file.
 
 ## Files in the record
 

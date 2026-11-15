@@ -1,6 +1,6 @@
 # OpenMesh v1
 
-*The six networks of the lecture* · `openmesh_v1`
+*The six networks of the OISAC lecture* · `openmesh_v1`
 
 | | |
 |---|---|
@@ -8,11 +8,15 @@
 | Region | New York City, USA |
 | Period | Oct 2023 - Jun 2024 |
 | Resolution | 1 min |
-| Content | the first release, 103 links (links only on this record) |
+| Content | the first release, 103 links |
 | Operator / source | NYC Mesh (community network) |
 | Licence | CC BY 4.0 |
 | Paper | Jacoby et al. (2026), ESSD 18, 5817-5836, [doi:10.5194/essd-18-5817-2026](https://doi.org/10.5194/essd-18-5817-2026) |
 | Data | [https://doi.org/10.5281/zenodo.15287692](https://doi.org/10.5281/zenodo.15287692) |
+
+![OpenMesh v1](../fig/datasets/openmesh_v1.png)
+
+*Drawn from the downloaded split by `python -m oisac_datasets figures`.*
 
 ## Get it
 

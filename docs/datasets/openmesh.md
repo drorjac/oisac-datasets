@@ -1,6 +1,6 @@
 # OpenMesh v2
 
-*The six networks of the lecture* · `openmesh`
+*The six networks of the OISAC lecture* · `openmesh`
 
 | | |
 |---|---|
@@ -13,6 +13,12 @@
 | Licence | CC BY 4.0 |
 | Paper | Jacoby et al. (2026), ESSD 18, 5817-5836, [doi:10.5194/essd-18-5817-2026](https://doi.org/10.5194/essd-18-5817-2026) |
 | Data | [https://doi.org/10.5281/zenodo.23283445](https://doi.org/10.5281/zenodo.23283445) |
+
+**Links:** [code](https://github.com/drorjac/OpenMesh)
+
+![OpenMesh v2](../fig/datasets/openmesh.png)
+
+*Drawn from the downloaded split by `python -m oisac_datasets figures`.*
 
 ## Get it
 

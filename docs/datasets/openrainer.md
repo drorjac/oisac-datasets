@@ -1,6 +1,6 @@
 # OpenRainER
 
-*The six networks of the lecture* · `openrainer`
+*The six networks of the OISAC lecture* · `openrainer`
 
 | | |
 |---|---|
@@ -13,6 +13,12 @@
 | Licence | CC BY 4.0 |
 | Paper | Covi et al. (2026), ESSD Discuss., [doi:10.5194/essd-2026-160](https://doi.org/10.5194/essd-2026-160) |
 | Data | [https://doi.org/10.5281/zenodo.10593848](https://doi.org/10.5281/zenodo.10593848) |
+
+**Links:** [example data](https://github.com/OpenSenseAction/opensense_example_data/tree/main/OpenRainER)
+
+![OpenRainER](../fig/datasets/openrainer.png)
+
+*Drawn from the downloaded split by `python -m oisac_datasets figures`.*
 
 ## Get it
 

@@ -1,6 +1,6 @@
 # Amsterdam PWS
 
-*The six networks of the lecture* · `amsterdam_pws`
+*The six networks of the OISAC lecture* · `amsterdam_pws`
 
 | | |
 |---|---|
@@ -13,6 +13,12 @@
 | Licence | CC BY 4.0 |
 | Paper | de Vos et al. (2019), GRL 46, 8820-8829, [doi:10.1029/2019GL083731](https://doi.org/10.1029/2019GL083731) |
 | Data | [https://doi.org/10.4121/uuid:6e6a9788-49fc-4635-a43d-a2fa164d37ec](https://doi.org/10.4121/uuid:6e6a9788-49fc-4635-a43d-a2fa164d37ec) |
+
+**Links:** [QC code](https://github.com/OpenSenseAction/pypwsqc)
+
+![Amsterdam PWS](../fig/datasets/amsterdam_pws.png)
+
+*Drawn from the downloaded split by `python -m oisac_datasets figures`.*
 
 ## Get it
 

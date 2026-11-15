@@ -13,11 +13,15 @@ from .remote import UA
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.yaml"
 GROUPS = {
-    "main": "The six networks of the lecture",
+    "main": "The six networks of the OISAC lecture",
     "more": "More open link datasets",
+    "products": "Rain products from opportunistic sensors",
+    "examples": "Example data shipped with software",
+    "simulated": "Simulations and method data",
     "active": "Active approach: links built for the experiment",
-    "upcoming": "Not open yet",
+    "closed": "Known networks, data not open (yet)",
 }
+OPEN_TYPES = ("zenodo", "4tu", "github")
 
 
 def data_dir() -> Path:
@@ -53,7 +57,7 @@ class Dataset:
 
     @property
     def is_open(self) -> bool:
-        return self.source["type"] in ("zenodo", "4tu")
+        return self.source["type"] in OPEN_TYPES
 
     @property
     def landing(self) -> str:

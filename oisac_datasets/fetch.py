@@ -19,7 +19,7 @@ import requests
 from .catalog import Dataset, RemoteFile, data_dir
 from .remote import UA, remote_zip
 
-RAW = "https://raw.githubusercontent.com/{repo}/main/{path}"
+RAW = "https://raw.githubusercontent.com/{repo}/{ref}/{path}"
 
 
 def _human(n: float) -> str:
@@ -113,13 +113,13 @@ def extract_members(ds: Dataset, rf: RemoteFile, pick, out: Path, quiet=False,
 def fetch(ds: Dataset, mode: str = "sample", files: list[str] | None = None,
           members: list[str] | None = None, zip_name: str | None = None,
           max_mb: float = 150, quiet=False) -> list[Path]:
-    if not ds.is_open and not any("github" in s for s in ds.sample):
+    if not ds.is_open:
         msg = ds.source.get("note") or ds.get("licence")
         print(f"{ds.id}: no automatic download ({ds.source['type']}). {msg}\n  {ds.landing}")
         return []
     out = data_dir() / ds.id
     out.mkdir(parents=True, exist_ok=True)
-    record = {f.name: f for f in ds.files()} if ds.is_open else {}
+    record = {f.name: f for f in ds.files()}
     got: list[Path] = []
 
     if members:
@@ -133,7 +133,7 @@ def fetch(ds: Dataset, mode: str = "sample", files: list[str] | None = None,
     budget = max_mb * 1e6
     for spec in ds.sample:
         if "github" in spec:
-            url = RAW.format(repo=spec["github"], path=spec["path"])
+            url = RAW.format(repo=spec["github"], ref=spec.get("ref", "main"), path=spec["path"])
             got.append(download(url, out / "example" / Path(spec["path"]).name, quiet=quiet))
         elif "smallest" in spec:
             for f in sorted(record.values(), key=lambda f: f.size)[:spec["smallest"]]:

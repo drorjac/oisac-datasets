@@ -5,7 +5,11 @@ from __future__ import annotations
 import zipfile
 from pathlib import Path
 
-from .catalog import GROUPS, Dataset, data_dir
+from .catalog import GROUPS, ROOT, Dataset, data_dir
+
+
+def catalog_root():
+    return ROOT
 from .fetch import _human
 
 TEXT = {".csv", ".txt", ".dat", ".tsv", ".asc", ".yaml", ".yml", ".r", ".md", ".kml", ".json"}
@@ -61,9 +65,14 @@ def _peek_members(p: Path, info, limit=3, max_bytes=80e6, skip=()) -> list[str]:
             continue
         if any(fnmatch.fnmatch(i.filename.lower(), pat) for pat in skip):
             continue
+        if i.flag_bits & 0x1:
+            return out + ["", "(the zip members are password-protected; they cannot be previewed)"]
         with zipfile.ZipFile(p) as z, tempfile.TemporaryDirectory() as td:
             t = Path(td) / Path(i.filename).name
-            t.write_bytes(z.read(i))
+            try:
+                t.write_bytes(z.read(i))
+            except (RuntimeError, NotImplementedError) as e:
+                return out + ["", f"(cannot extract {i.filename}: {e})"]
             d = describe_netcdf(t) if suf == ".nc" else describe_text(t, 4)
         out += ["", f"*inside:* `{i.filename}`", ""]
         out += d if d and d[0] == "```" else [f"- {x}" for x in d]
@@ -86,6 +95,24 @@ def describe_zip(p: Path, n=12, skip=()) -> list[str]:
     return out + _peek_members(p, nc_first, skip=skip)
 
 
+def describe_h5(p: Path) -> list[str]:
+    import h5py
+    out = []
+    with h5py.File(p) as f:
+        f.visititems(lambda n, o: out.append(f"`{n}` {o.shape} {o.dtype}") if hasattr(o, "shape") else None)
+        for k in ("what", "where", "dataset1/what"):
+            if k in f:
+                at = {a: (v.decode() if isinstance(v, bytes) else v) for a, v in f[k].attrs.items()}
+                out.append(f"{k}: " + ", ".join(f"{a}={v}" for a, v in list(at.items())[:8]))
+    return out
+
+
+def describe_png(p: Path) -> list[str]:
+    from PIL import Image
+    with Image.open(p) as im:
+        return [f"image {im.size[0]} x {im.size[1]} px, mode {im.mode}"]
+
+
 def describe_file(p: Path, skip=()) -> list[str]:
     import fnmatch
     if any(fnmatch.fnmatch(str(p).lower(), pat) for pat in skip):
@@ -97,6 +124,10 @@ def describe_file(p: Path, skip=()) -> list[str]:
         return describe_zip(p, skip=skip)
     if s == ".gz":
         return describe_gz(p)
+    if s in (".h5", ".hdf5"):
+        return describe_h5(p)
+    if s == ".png":
+        return describe_png(p)
     if s in TEXT:
         return describe_text(p)
     return []
@@ -126,20 +157,36 @@ def markdown(ds: Dataset, online=True) -> str:
             ("Paper", f"{g('paper')}" + (f", [doi:{g('paper_doi')}](https://doi.org/{g('paper_doi')})" if g("paper_doi") else "")),
             ("Data", f"[{ds.landing}]({ds.landing})" if ds.landing else "")]
     L += ["| | |", "|---|---|"] + [f"| {k} | {v} |" for k, v in rows if v] + [""]
-    if ds.group == "upcoming":
-        L += ["**Not open yet.** The data are in the TAU CellEnMon lab database and are being prepared "
-              "for a public release. This page will get a download once they are out.", ""]
+    links = ds.get("links") or {}
+    if links:
+        L += ["**Links:** " + " · ".join(f"[{k}]({v})" for k, v in links.items()), ""]
+    fig = catalog_root() / "docs" / "fig" / "datasets" / f"{ds.id}.png"
+    if fig.exists():
+        L += [f"![{ds.name}](../fig/datasets/{ds.id}.png)", "",
+              "*Drawn from the downloaded split by `python -m oisac_datasets figures`.*", ""]
+    if ds.source["type"] == "closed":
+        if ds.id in ("israel_tau", "rehovot_scwn"):
+            L += ["**Not open yet.** The data are in the TAU CellEnMon lab database and are being prepared "
+                  "for a public release. This page will get a download once they are out.", ""]
+        else:
+            L += ["**Not open.** The network is used in published work, but its data are held by the operator "
+                  "and shared only under agreement. Listed here so the map of what exists is complete.", ""]
+        L += [f"More: <{ds.source['url']}>", ""]
         return "\n".join(L)
     if ds.source["type"] == "manual":
-        L += ["## Download", "", f"No automatic download: {ds.source.get('note', '')}.", "",
-              f"Page: <{ds.source['url']}>", ""]
+        L += ["## Download (by hand)", "", f"No automatic download: {ds.source.get('note', '')}.", "",
+              f"Page: <{ds.source['url']}>", "",
+              f"Put the files in `$OISAC_DATA/{ds.id}/` (default `~/data/oisac-datasets/{ds.id}/`) and "
+              f"`python -m oisac_datasets describe {ds.id}` will describe them.", ""]
         return "\n".join(L)
 
     L += ["## Get it", "", "```bash",
           f"python -m oisac_datasets fetch {ds.id}            # the small split below",
           f"python -m oisac_datasets fetch {ds.id} --all      # the whole record",
           "```", "", f"Split: {g('sample_note')}.", ""]
-    if online and ds.is_open:
+    if ds.source["type"] == "github":
+        L += [f"Source: <{ds.source['url']}>", ""]
+    if online and ds.source["type"] in ("zenodo", "4tu"):
         try:
             files = ds.files()
             L += ["## Files in the record", "", "| file | size |", "|---|---:|"]
@@ -159,7 +206,15 @@ def markdown(ds: Dataset, online=True) -> str:
              and not p.name.endswith(".part")] if out.exists() else []
     if local:
         L += ["## What the split holds", ""]
+        seen: dict[str, int] = {}
+        shown = []
         for p in local:
+            seen[p.suffix] = seen.get(p.suffix, 0) + 1
+            if p.suffix != ".png" or seen[p.suffix] <= 3:
+                shown.append(p)
+        if len(shown) < len(local):
+            L += [f"{len(local)} files; the first few are described below.", ""]
+        for p in shown:
             L += [f"**`{p.relative_to(out)}`** ({_human(p.stat().st_size)})", ""]
             d = describe_file(p, skip=ds.get("no_preview", []) or ())
             code = False

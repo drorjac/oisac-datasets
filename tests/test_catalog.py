@@ -12,18 +12,18 @@ def test_ids_unique_and_groups_known():
 def test_sources_complete():
     for d in catalog.load():
         t = d.source["type"]
-        assert t in ("zenodo", "4tu", "manual", "upcoming"), d.id
+        assert t in ("zenodo", "4tu", "github", "manual", "closed"), d.id
         if t == "zenodo":
             assert d.source["record"].isdigit(), d.id
         if t == "4tu":
             assert d.source["article"], d.id
-        if t in ("manual", "upcoming"):
+        if t in ("manual", "closed", "github"):
             assert d.source["url"].startswith("https://"), d.id
-        if t in ("zenodo", "4tu"):
+        if t in ("zenodo", "4tu", "github"):
             assert d.sample, f"{d.id}: open dataset without a split"
 
 
-def test_upcoming_not_open():
+def test_closed_not_open():
     for d in catalog.load():
-        if d.group == "upcoming":
+        if d.group == "closed":
             assert not d.is_open and "not open" in d.get("licence")

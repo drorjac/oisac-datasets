@@ -6,12 +6,17 @@
 |---|---|
 | Sensor | CML (E-band) |
 | Region | Prague, Czech Republic |
-| Period | one season |
-| Resolution | 1 and 5 min |
-| Content | E-band (71-86 GHz) CML losses with rain gauges, temperature and humidity; raw and regular series, R code |
+| Period | Aug-Dec 2018 |
+| Resolution | 1 min |
+| Content | six Ericsson MINI-LINK E-band links (71-86 GHz, 0.4-4.9 km) from one hub, total loss; rain gauges, temperature and humidity; raw and preprocessed series, R code |
+| Operator / source | Ericsson MINI-LINK (T-Mobile CZ) |
 | Licence | CC BY 4.0 |
 | Paper | Fencl et al. (2020), AMT 13, 6559-6578, [doi:10.5194/amt-13-6559-2020](https://doi.org/10.5194/amt-13-6559-2020) |
 | Data | [https://doi.org/10.5281/zenodo.4090953](https://doi.org/10.5281/zenodo.4090953) |
+
+![Prague E-band CMLs](../fig/datasets/prague_eband.png)
+
+*Drawn from the downloaded split by `python -m oisac_datasets figures`.*
 
 ## Get it
 

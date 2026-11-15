@@ -10,6 +10,7 @@
 | Resolution | 4 s |
 | Content | one 1.85 km dual-polarised 38 GHz link, radomes shielded at times (wet antenna); 5 disdrometers, 3 gauges |
 | Licence | CC BY 4.0 |
+| Paper | Spackova et al. (2021), ESSD |
 | Data | [https://doi.org/10.5281/zenodo.4923125](https://doi.org/10.5281/zenodo.4923125) |
 
 ## Get it

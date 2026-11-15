@@ -26,6 +26,8 @@ def main(argv=None):
     p.add_argument("--member", action="append", help="member name or glob inside --zip (repeatable)")
     p.add_argument("--max-mb", type=float, default=150, help="skip split files larger than this")
     sub.add_parser("docs", help="describe every dataset and rebuild the README table")
+    p = sub.add_parser("figures", help="draw the overview figures and the quicklook of each downloaded split")
+    p.add_argument("id", nargs="*", help="only these quicklooks")
     a = ap.parse_args(argv)
 
     if a.cmd == "list":
@@ -60,9 +62,19 @@ def main(argv=None):
             print(f"   {len(got)} files in {data_dir() / d.id}")
     elif a.cmd == "describe":
         _write_doc(catalog.get(a.id))
+    elif a.cmd == "figures":
+        from . import viz
+        if a.id:
+            for i in a.id:
+                viz.quicklook(i)
+        else:
+            viz.all_figures()
     elif a.cmd == "docs":
         for d in catalog.load():
-            _write_doc(d)
+            try:
+                _write_doc(d)
+            except Exception as e:  # noqa: BLE001
+                print(f"FAILED {d.id}: {e}")
         from .readme import write_readme
         write_readme()
 

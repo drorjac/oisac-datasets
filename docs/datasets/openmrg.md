@@ -1,6 +1,6 @@
 # OpenMRG
 
-*The six networks of the lecture* · `openmrg`
+*The six networks of the OISAC lecture* · `openmrg`
 
 | | |
 |---|---|
@@ -13,6 +13,12 @@
 | Licence | CC BY-SA 4.0 |
 | Paper | Andersson et al. (2022), ESSD 14, 5411-5426, [doi:10.5194/essd-14-5411-2022](https://doi.org/10.5194/essd-14-5411-2022) |
 | Data | [https://doi.org/10.5281/zenodo.7107689](https://doi.org/10.5281/zenodo.7107689) |
+
+**Links:** [example data](https://github.com/OpenSenseAction/opensense_example_data/tree/main/OpenMRG) · [notebook](https://github.com/OpenSenseAction/OPENSENSE_sandbox/blob/main/notebooks/openMRG_use_case.ipynb)
+
+![OpenMRG](../fig/datasets/openmrg.png)
+
+*Drawn from the downloaded split by `python -m oisac_datasets figures`.*
 
 ## Get it
 

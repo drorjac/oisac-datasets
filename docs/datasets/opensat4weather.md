@@ -1,6 +1,6 @@
 # OpenSat4Weather
 
-*The six networks of the lecture* · `opensat4weather`
+*The six networks of the OISAC lecture* · `opensat4weather`
 
 | | |
 |---|---|
@@ -8,10 +8,15 @@
 | Region | southern France |
 | Period | Aug-Dec 2022 |
 | Resolution | 1 min |
-| Content | 215 Ku-band TV satellite links (RSL) with the ERA5 0 C height; Meteo-France gauges and radar along each link |
+| Content | 215 Ku-band TV satellite links (RSL) with the ERA5 0 C height; 113 Meteo-France gauges and radar along each link |
+| Operator / source | Sereno / HD Rain |
 | Licence | CC BY 4.0 |
 | Paper | Nebuloni et al. (2026), ESSD 18, 7455-7473, [doi:10.5194/essd-18-7455-2026](https://doi.org/10.5194/essd-18-7455-2026) |
 | Data | [https://doi.org/10.5281/zenodo.16530166](https://doi.org/10.5281/zenodo.16530166) |
+
+![OpenSat4Weather](../fig/datasets/opensat4weather.png)
+
+*Drawn from the downloaded split by `python -m oisac_datasets figures`.*
 
 ## Get it
 

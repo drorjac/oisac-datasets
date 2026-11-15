@@ -13,9 +13,13 @@
 | Paper | Chen et al. (2019), Proc. ACM mmNets; Kohli et al. (2024), IEEE/ACM ToN 32(3), [doi:10.1145/3349624.3356770](https://doi.org/10.1145/3349624.3356770) |
 | Data | [https://wiki.cosmos-lab.org/wiki/Datasets](https://wiki.cosmos-lab.org/wiki/Datasets) |
 
-## Download
+**Links:** [testbed](https://www.cosmos-lab.org)
+
+## Download (by hand)
 
 No automatic download: shared through the NIST 5G mmWave Channel Model Alliance; the COSMOS wiki has no direct download (checked Nov 2026), ask testbed support.
 
 Page: <https://wiki.cosmos-lab.org/wiki/Datasets>
+
+Put the files in `$OISAC_DATA/cosmos/` (default `~/data/oisac-datasets/cosmos/`) and `python -m oisac_datasets describe cosmos` will describe them.
 
