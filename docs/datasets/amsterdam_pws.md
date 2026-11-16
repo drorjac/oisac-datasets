@@ -1,6 +1,6 @@
 # Amsterdam PWS
 
-*The six networks of the OISAC lecture* · `amsterdam_pws`
+*The main networks of the OISAC lecture* · `amsterdam_pws`
 
 | | |
 |---|---|

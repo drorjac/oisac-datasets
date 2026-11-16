@@ -9,7 +9,7 @@
 #   lat/lon  a point for the overview map (a list of points for multi-site sets)
 #   start/end (YYYY-MM), res_s (sampling in seconds), n (sensors), for the overview figures
 #
-# group: main       the six networks of the OISAC lecture
+# group: main       the main networks of the OISAC lecture
 #        more       other open link datasets: campaigns, single links, archives
 #        products   rain maps and adjusted radar made from opportunistic sensors
 #        examples   example data shipped with the processing software

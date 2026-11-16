@@ -1,6 +1,6 @@
 # OpenMRG
 
-*The six networks of the OISAC lecture* · `openmrg`
+*The main networks of the OISAC lecture* · `openmrg`
 
 | | |
 |---|---|

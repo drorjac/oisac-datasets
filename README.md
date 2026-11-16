@@ -73,7 +73,7 @@ Each name links to its page: facts, citation, files and sizes, what is inside th
 a description of every file in the split (netCDF dimensions and variables, table columns).
 
 <!-- TABLE START (python -m oisac_datasets docs) -->
-### The six networks of the OISAC lecture
+### The main networks of the OISAC lecture
 
 | dataset | sensor | where | when | sampling | access | licence |
 |---|---|---|---|---|---|---|

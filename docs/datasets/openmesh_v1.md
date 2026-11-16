@@ -1,6 +1,6 @@
 # OpenMesh v1
 
-*The six networks of the OISAC lecture* · `openmesh_v1`
+*The main networks of the OISAC lecture* · `openmesh_v1`
 
 | | |
 |---|---|

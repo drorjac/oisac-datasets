@@ -1,6 +1,6 @@
 # Netherlands CML (2011-2015)
 
-*The six networks of the OISAC lecture* · `netherlands`
+*The main networks of the OISAC lecture* · `netherlands`
 
 | | |
 |---|---|

@@ -1,6 +1,6 @@
 # OpenSat4Weather
 
-*The six networks of the OISAC lecture* · `opensat4weather`
+*The main networks of the OISAC lecture* · `opensat4weather`
 
 | | |
 |---|---|

@@ -13,7 +13,7 @@ from .remote import UA
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.yaml"
 GROUPS = {
-    "main": "The six networks of the OISAC lecture",
+    "main": "The main networks of the OISAC lecture",
     "more": "More open link datasets",
     "products": "Rain products from opportunistic sensors",
     "examples": "Example data shipped with software",

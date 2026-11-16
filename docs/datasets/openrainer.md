@@ -1,6 +1,6 @@
 # OpenRainER
 
-*The six networks of the OISAC lecture* · `openrainer`
+*The main networks of the OISAC lecture* · `openrainer`
 
 | | |
 |---|---|
